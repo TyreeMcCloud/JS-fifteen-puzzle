@@ -5,8 +5,12 @@
     <title>Fifteen Puzzle</title>
 </head>
 <body>
+    <audio id="game-music" autoplay>
+        <source src="./audio/game1.mp3" type="audio/mp3">
+    </audio>
     <div class="header">Fifteen Puzzle</div>
     <div class="main">
+        <div id="timer">Hit Shuffle to Start the Game.</div>
         <div class="controls">
             <select id="background-selector" class="background-selector">
                 <option value="img/background1.png">Background 1</option>
@@ -15,8 +19,7 @@
                 <option value="img/background4.png">Background 4</option>
             </select>
         </div>
-        <div id="game-container"></div>
-        <div id="timer"></div>
+        <div id="game-container"></div> <br>
     </div>
 
     <div class="bottom">

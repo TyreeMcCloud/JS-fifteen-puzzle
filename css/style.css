@@ -69,6 +69,10 @@ div.bottom {
     color: inherit;
 }
 
+.homepage-button:hover {
+    background-color: #333;
+}
+
 .shuffle-button {
     font-size: 18pt;
     background-color: black;
@@ -88,11 +92,17 @@ div.bottom {
 }
 
 .home-button {
+    padding-top: 5px;
+    padding-bottom: 5px;
     width: 35%;
     border: solid 1px white;
     border-radius: 12.5px;
     text-align: center;
     z-index: 10;
+}
+
+.home-button:hover {
+    background-color: #333;
 }
 
 .home-image {

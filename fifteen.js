@@ -5,7 +5,7 @@ const gridSize = 4;
 const tileSize = 100;
 let emptyTile = { row: gridSize - 1, col: gridSize - 1 };
 let board = [];
-let timerElement, shuffleButton, backgroundSelector;
+let timer, timerElement, shuffleButton, backgroundSelector;
 
 // Backgrounds
 const backgrounds = [
@@ -144,6 +144,7 @@ function isMovable(row, col) {
 
 // Shuffle Board
 function shuffleBoard() {
+    clearInterval(timer);
     for (let i = 0; i < 300; i++) {
         const neighbors = getNeighbors();
         const randomTile = neighbors[Math.floor(Math.random() * neighbors.length)];
@@ -154,6 +155,40 @@ function shuffleBoard() {
         Move(randomTile, emptyTile.row, emptyTile.col);
         updateBoard(randomTile, row, col);
     }
+    let timeRemaining = 150;//minute 30 seconds
+    const timerElement = document.getElementById("timer");
+
+    function startTimer() {
+        const audio = document.getElementById('game-music');
+        audio.src = "./audio/game1.mp3"; 
+        audio.load();
+        audio.play().catch(error => {
+            console.log('Autoplay failed:', error);
+        });
+        updateTimerDisplay();
+        timer = setInterval(() => {
+            timeRemaining--;
+            updateTimerDisplay();
+            if (timeRemaining == 60) {
+                audio.src = "./audio/game2.mp3"; 
+                audio.load();
+                audio.play();
+            }
+            if (timeRemaining <= 0) {
+                clearInterval(timer);
+                gameOver(false);
+            }
+        }, 1000);
+    }
+
+    function updateTimerDisplay() {
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        timerElement.textContent = "Time Remaining: " + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    }
+
+    // Start the timer for testing
+    startTimer();
 }
 
 function updateBoard(tile, row, col) {
@@ -191,34 +226,6 @@ function isValidPosition(row, col) {
     return row >= 0 && row < gridSize && col >= 0 && col < gridSize;
 }
 
-// Timer Logic
-document.addEventListener("DOMContentLoaded", function () {
-    let timer;
-    let timeRemaining = 150;//minute 30 seconds
-    const timerElement = document.getElementById("timer");
-
-    function startTimer() {
-        updateTimerDisplay();
-        timer = setInterval(() => {
-            timeRemaining--;
-            updateTimerDisplay();
-            if (timeRemaining <= 0) {
-                clearInterval(timer);
-                gameOver(false);
-            }
-        }, 1000);
-    }
-
-    function updateTimerDisplay() {
-        const minutes = Math.floor(timeRemaining / 60);
-        const seconds = timeRemaining % 60;
-        timerElement.textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
-    }
-
-    // Start the timer for testing
-    startTimer();
-});
-
 // Check Win Condition
 function checkWin() {
     let correct = 1;
@@ -238,7 +245,6 @@ function gameOver(win) {
     localStorage.setItem("gameResult", win ? "You win!" : "Time's up! You lose!");
     window.location.href = "gameover.html";
 }
-
 
 // Change Background Image
 function changeBackgroundImage(event) {
@@ -263,5 +269,4 @@ document.addEventListener("DOMContentLoaded", () => {
     shuffleButton.addEventListener("click", shuffleBoard);
     const backgroundSelector = document.getElementById("background-selector");
     backgroundSelector.addEventListener("change", changeBackgroundImage);
-    startTimer();
 });
