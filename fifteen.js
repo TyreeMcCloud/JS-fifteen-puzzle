@@ -187,7 +187,7 @@ function shuffleBoard() {
         timerElement.textContent = "Time Remaining: " + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     }
 
-    // Start the timer for testing
+
     startTimer();
 }
 
