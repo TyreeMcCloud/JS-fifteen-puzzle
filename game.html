@@ -6,17 +6,31 @@
 </head>
 <body>
     <div class="header">Fifteen Puzzle</div>
-
     <div class="main">
-    <h1></h1>
-    <ul>
-
-    </ul>
+        <div class="controls">
+            <select id="background-selector" class="background-selector">
+                <option value="img/background1.png">Background 1</option>
+                <option value="img/background2.png">Background 2</option>
+                <option value="img/background3.png">Background 3</option>
+                <option value="img/background4.png">Background 4</option>
+            </select>
+        </div>
+        <div id="game-container"></div>
+        <div id="timer"></div>
     </div>
 
     <div class="bottom">
-        <button class="shuffle-button">Shuffle</button>
+        <button id="shuffle" class="shuffle-button">Shuffle</button>
     </div>
+    <div class="right-align">
+        <a href="https://validator.w3.org/">
+            <img src="https://codd.cs.gsu.edu/~lhenry23/Web/HW/Asg02/w3c-xhtml.png" alt="Valid HTML">
+        </a>
+        <a href="https://jigsaw.w3.org/css-validator/">
+            <img src="https://codd.cs.gsu.edu/~lhenry23/Web/HW/Asg02/w3c-css.png" alt="Valid CSS">
+        </a>
+    </div>
+    <script src="fifteen.js"></script>
 </body>
 </html>
 

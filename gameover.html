@@ -2,23 +2,27 @@
 <html>
 <head>
     <link rel="stylesheet" href="css/style.css">
-    <title>Fifteen Puzzle - Homepage</title>
+    <title>Fifteen Puzzle - Game Over</title>
 </head>
 <body>
-    <div class="header">Fifteen Puzzle</div>
-
+    <div class="header">Game Over</div>
     <div class="main">
-    <h1>Welcome to our Fifteen Puzzle</h1>
-    <ul>
-
-    </ul>
+        <h1 id="game-result"></h1>
     </div>
-
     <div class="bottom">
         <a class="homepage-button" href="./homepage.html">
-            <img class="home-image" src="img/home.png">
+            <img class="home-image" src="img/home.png" alt="Home">
         </a>
     </div>
+    <script>
+        // Get result from localStorage and display it
+        const resultMessage = localStorage.getItem("gameResult");
+        const resultElement = document.getElementById("game-result");
+        if (resultMessage) {
+            resultElement.textContent = resultMessage;
+        } else {
+            resultElement.textContent = "No game result available.";
+        }
+    </script>
 </body>
 </html>
-
