@@ -245,6 +245,11 @@ function checkWin() {
 function gameOver(win) {
     // Use local storage to store game result
     localStorage.setItem("gameResult", win ? "You win!" : "Time's up! You lose!");
+    if (win) {
+        alert("Congratulations! You won!");
+    } else {
+        alert("Sorry, time's up!");
+    }
     window.location.href = "gameover.html";
 }
 
