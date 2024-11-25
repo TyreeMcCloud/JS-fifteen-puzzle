@@ -175,3 +175,7 @@ div.bottom {
 .right-align {
     text-align: right;
 }
+
+.no-interaction {
+    pointer-events: none;
+}

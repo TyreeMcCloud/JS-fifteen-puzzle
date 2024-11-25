@@ -145,6 +145,8 @@ function isMovable(row, col) {
 // Shuffle Board
 function shuffleBoard() {
     clearInterval(timer);
+    document.getElementById("game-container").classList.remove("no-interaction");
+    document.getElementById("background-selector").classList.add("no-interaction");
     for (let i = 0; i < 300; i++) {
         const neighbors = getNeighbors();
         const randomTile = neighbors[Math.floor(Math.random() * neighbors.length)];
